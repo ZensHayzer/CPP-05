@@ -6,12 +6,12 @@
 #    By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/30 20:34:23 by ajeanne           #+#    #+#              #
-#    Updated: 2023/08/09 19:52:27 by ajeanne          ###   ########.fr        #
+#    Updated: 2023/09/07 14:36:55 by ajeanne          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME = sorcerer
+NAME = bureaucrat
 
 SRCS_DIR =	$(shell find srcs -type d)
 INC_DIR =	includes

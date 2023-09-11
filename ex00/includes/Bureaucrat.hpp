@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 19:44:09 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/09/05 19:10:52 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/09/07 15:02:20 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,42 @@
 #include <iostream>
 #include <exception>
 
-class Bureaucrat : public std::exception    {
-    
-    public:
-        Bureaucrat();
-        Bureaucrat(std::string name, int grade);
-        Bureaucrat(Bureaucrat const & src);
-        ~Bureaucrat();
+class Bureaucrat	{
+	
+	public:
+		Bureaucrat();
+		Bureaucrat(std::string name, int grade);
+		Bureaucrat(Bureaucrat const & src);
+		~Bureaucrat();
 
-        Bureaucrat  &operator=(Bureaucrat const & src);
-        std::exception GradeTooHighException;
-        std::exception GradeTooLowException;
+		Bureaucrat			&operator=(Bureaucrat const & src);
 
-        std::string    getName() const;
-        int            getGrade() const;
+		std::string const	getName() const;
+		int					getGrade() const;
 
-        void           incrGrade();
-        void           decrGrade();
+		void				incrGrade();
+		void				decrGrade();
+
+		class GradeTooHighException : public std::exception	{
+			public:
+			virtual const char* what() const throw(){
+				return ("The grade set is too high");
+			}
+		};
+
+		class GradeTooLowException : public std::exception	{
+			public:
+			virtual const char* what() const throw(){
+				return ("The grade set is too low");
+			}
+		};
 
 
-    private:
-        const std::string   _name;
-        int                 _grade;
+	private:
+		const std::string	_name;
+		int					_grade;
 };
+
+std::ostream	&operator<<(std::ostream& o, Bureaucrat &src);
 
 #endif
