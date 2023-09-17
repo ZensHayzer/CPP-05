@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 19:51:40 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/09/11 23:53:57 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/09/12 22:32:47 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ Bureaucrat::Bureaucrat() : _name("Christine"), _grade(150)  {
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)   {
 	if (grade < 1)
-		throw GradeTooHighException();
-	else if (grade > 150)
 		throw GradeTooLowException();
+	else if (grade > 150)
+		throw GradeTooHighException();
 	else
 		_grade = grade;
 }
@@ -34,9 +34,8 @@ Bureaucrat::~Bureaucrat()   {
 	
 }
 
-Bureaucrat      &Bureaucrat::operator=(Bureaucrat const & src)  {
-	if (this != &src)
-		_grade = getGrade();
+Bureaucrat	&Bureaucrat::operator=(Bureaucrat const & src)  {
+	(void)src;
 
 	return (*this);
 }
@@ -61,9 +60,19 @@ void    Bureaucrat::incrGrade()   {
 		_grade--;
 }
 
-void    Bureaucrat::decrGrade()   {
+void    Bureaucrat::decrGrade()	{
 	if (_grade >= 150)
 		throw GradeTooLowException();
 	else
 		_grade++;
+}
+
+void	Bureaucrat::signForm(Form & src)	{
+	try	{
+		src.beSigned(*this);
+		std::cout << _name << " signed " << src.getName() << std::endl;
+	}
+	catch (std::exception const &exp)	{
+		std::cout << _name << " couldnt sign " << src.getName() << " because " << exp.what() << "." << std::endl;
+	}
 }
