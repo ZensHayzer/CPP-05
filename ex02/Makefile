@@ -6,7 +6,7 @@
 #    By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/30 20:34:23 by ajeanne           #+#    #+#              #
-#    Updated: 2023/09/12 23:19:56 by ajeanne          ###   ########.fr        #
+#    Updated: 2023/09/17 23:28:21 by ajeanne          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,11 @@ vpath %.cpp $(foreach dir, $(SRCS_DIR), $(dir):)
 
 OBJS =	$(addprefix $(OBJS_DIR)/, $(SRCS:%.cpp=%.o))
 
-SRCS =	Bureaucrat.cpp	\
-		AForm.cpp		\
+SRCS =	Bureaucrat.cpp				\
+		AForm.cpp					\
+		ShrubberyCreationForm.cpp	\
+		RobotomyRequestForm.cpp		\
+		PresidentialPardonForm.cpp	\
 		main.cpp
 
 CC =				c++

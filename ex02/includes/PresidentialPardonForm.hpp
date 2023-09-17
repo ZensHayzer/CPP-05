@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 23:21:28 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/09/13 03:26:05 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/09/18 00:50:59 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ class PresidentialPardonForm : public AForm	{
 		PresidentialPardonForm	&operator=(PresidentialPardonForm const & src);
 	
 		std::string	getTarget() const;
+
+		virtual void		execute(Bureaucrat const & executor) const;
 	
 	private:
 		std::string	_target;

@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 02:38:44 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/09/13 03:23:37 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/09/18 00:51:38 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,20 @@ RobotomyRequestForm	&RobotomyRequestForm::operator=(RobotomyRequestForm const & 
 
 std::string	RobotomyRequestForm::getTarget() const	{
 	return (_target);
+}
+
+void	RobotomyRequestForm::execute(Bureaucrat const & executor) const	{
+	checkExec(executor);
+	
+	int	randomInt;
+	
+	srand(time(NULL));
+	randomInt = rand() % 2 + 1;
+	std::cout << "BrrrZzzzZrrRrrRzzzZr" << std::endl;
+	if (randomInt == 1)	{
+		std::cout << "Hey ! " << _target << " you successfully robotomized." << std::endl;
+	}
+	else	{
+		std::cout << "I'm sorry, " << _target << " your Robotomy failed." << std::endl;
+	}
 }

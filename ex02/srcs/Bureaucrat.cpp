@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 19:51:40 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/09/12 22:32:47 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/09/18 00:53:23 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void    Bureaucrat::decrGrade()	{
 		_grade++;
 }
 
-void	Bureaucrat::signForm(Form & src)	{
+void	Bureaucrat::signForm(AForm & src)	{
 	try	{
 		src.beSigned(*this);
 		std::cout << _name << " signed " << src.getName() << std::endl;
@@ -75,4 +75,9 @@ void	Bureaucrat::signForm(Form & src)	{
 	catch (std::exception const &exp)	{
 		std::cout << _name << " couldnt sign " << src.getName() << " because " << exp.what() << "." << std::endl;
 	}
+}
+
+void	Bureaucrat::executeForm(AForm const & form)	{
+	form.execute(*this);
+	std::cout << _name << " executed " << form.getName() << std::endl;
 }

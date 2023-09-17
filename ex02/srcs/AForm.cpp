@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 23:08:02 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/09/12 23:28:31 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/09/17 20:34:57 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,20 @@ void	AForm::beSigned(Bureaucrat const & bur)	{
 		throw GradeTooLowException();
 	else
 		_signed = 1;
+}
+
+void	AForm::checkExec(Bureaucrat const & executor) const	{
+	if (this->_signed == true)	{
+		if (executor.getGrade() <= this->_reqGradeExecute)	{
+			return;
+		}
+		else	{
+			throw TooLowExecute();
+		}
+	}
+	else	{
+		throw NotSigned();
+	}
 }
 
 std::ostream    &operator<<(std::ostream& o, AForm &src)   {

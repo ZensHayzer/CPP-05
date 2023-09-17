@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 02:39:03 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/09/13 03:26:56 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/09/18 00:50:46 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,10 @@ PresidentialPardonForm	&PresidentialPardonForm::operator=(PresidentialPardonForm
 
 std::string	PresidentialPardonForm::getTarget() const	{
 	return (_target);
+}
+
+void	PresidentialPardonForm::execute(Bureaucrat const & executor) const	{
+	checkExec(executor);
+	
+	std::cout << "You, " << _target << ", has been pardon by Zaphod Beeblebrox !" << std::endl;
 }
