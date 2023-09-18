@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 19:51:40 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/09/18 00:53:23 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/09/18 15:47:14 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)   {
 		_grade = grade;
 }
 
-Bureaucrat::Bureaucrat(Bureaucrat const & src)  {
+Bureaucrat::Bureaucrat(Bureaucrat const & src) : _name(src.getName())  {
 	if (this != &src)
 		*this = src;
 }
@@ -35,10 +35,12 @@ Bureaucrat::~Bureaucrat()   {
 }
 
 Bureaucrat	&Bureaucrat::operator=(Bureaucrat const & src)  {
-	(void)src;
+	if (this != &src)
+		_grade = src.getGrade();
 
 	return (*this);
 }
+
 
 std::ostream    &operator<<(std::ostream& o, Bureaucrat &src)   {
 	o << src.getName() << ", bureaucrat grade " << src.getGrade() << "." << std::endl;
