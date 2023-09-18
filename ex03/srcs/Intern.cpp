@@ -6,11 +6,13 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 02:01:30 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/09/18 02:26:17 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/09/18 06:18:02 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Intern.hpp"
+
+typedef AForm   *(Intern::*pf)(std::string const & target);
 
 Intern::Intern()    {
     
@@ -30,27 +32,28 @@ Intern  &Intern::operator=(Intern const & src)  {
     return (*this);
 }
 
-AForm   *Intern::makeForm(std::string name, std::string target) {
-    if (name == "PresidentialPardonForm")   {
-        PresidentialPardonForm  *PPF;
-        PPF = new PresidentialPardonForm(target);
-        std::cout << "Intern creates " << PPF->getName() << std::endl;
-        return (PPF);
-    }
-    else if (name == "RobotomyRequestForm"){
-        RobotomyRequestForm  *RRF;
-        RRF = new RobotomyRequestForm(target);
-        std::cout << "Intern creates " << RRF->getName() << std::endl;
-        return (RRF);
-    }
-    else if (name == "ShrubberyCreationForm")   {
-        ShrubberyCreationForm  *SCF;
-        SCF = new ShrubberyCreationForm(target);
-        std::cout << "Intern creates " << SCF->getName() << std::endl;
-        return (SCF);
-    }
-    else
-        std::cout << "This form name doesn't exist." << std::endl;
+AForm   *Intern::makeShrub(std::string const & target)    {
+    return (new ShrubberyCreationForm(target));
+}
+
+AForm   *Intern::makeRobot(std::string const & target)    {
+    return (new RobotomyRequestForm(target));
+}
+
+AForm   *Intern::makePresi(std::string const & target)    {
+    return (new PresidentialPardonForm(target));
+}
+
+AForm   *Intern::makeForm(std::string const & name, std::string const & target) {
+    std::string nameTab[] = {"ShrubberyCreationForm", "RobotomyRequestForm", "PresidentialPardonForm"};
+    pf          func[] = {&Intern::makeShrub, &Intern::makeRobot, &Intern::makePresi};
     
+    for (int i = 0; i < 3; i++) {
+        if (name == nameTab[i]) {
+            std::cout << "Intern creates " << name << std::endl;
+            return ((this->*func[i])(target));
+        }
+    }
+    throw WrongName();
     return (NULL);
 }

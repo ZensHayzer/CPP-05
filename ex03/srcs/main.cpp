@@ -6,7 +6,7 @@
 /*   By: ajeanne <ajeanne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 19:52:44 by ajeanne           #+#    #+#             */
-/*   Updated: 2023/09/18 02:35:27 by ajeanne          ###   ########.fr       */
+/*   Updated: 2023/09/18 03:26:15 by ajeanne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,47 @@ int	main()	{
 	AForm					*Mouais;
 	Intern					Fabrife;
 
-	Mouais = Fabrife.makeForm("ShrubberyCreationForm", "toto");
-	std::cout << *Mouais << std::endl;
-	delete Mouais;
+	try
+	{
+		Mouais = Fabrife.makeForm("ShrubberyCreationForm", "toto");
+		std::cout << *Mouais << std::endl;
+		delete Mouais;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 	
-	Mouais = Fabrife.makeForm("RobotomyRequestForm", "titi");
-	std::cout << *Mouais << std::endl;
-	delete Mouais;
+	try
+	{
+		Mouais = Fabrife.makeForm("RobotomyRequestForm", "titi");
+		std::cout << *Mouais << std::endl;
+		delete Mouais;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	
+	try
+	{
+		Mouais = Fabrife.makeForm("PresidentialPardonForm", "tutu");
+		std::cout << *Mouais << std::endl;
+		delete Mouais;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 
-	Mouais = Fabrife.makeForm("PresidentialPardonForm", "tutu");
-	std::cout << *Mouais << std::endl;
-	delete Mouais;
-	
-	Mouais = Fabrife.makeForm("Mouais", "tata");
+	try
+	{
+		Mouais = Fabrife.makeForm("Mouais", "tata");
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 	
 	return (0);
 }
